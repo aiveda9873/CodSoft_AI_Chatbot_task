@@ -1,0 +1,54 @@
+import re
+
+def chatbot_response(user_input):
+    user_input = user_input.lower()
+
+    # Greetings
+    if re.search(r'\b(hi|hello|hey|namaste|how are you)\b', user_input):
+        return "Hello! I am good  How can I help you today?"
+
+    # Asking for chatbot's name
+    elif re.search(r'\b(your name|who are you)\b', user_input):
+        return "I'm a simple rule-based chatbot created by Vedang."
+    
+    # Asking for chatbot's name
+    elif re.search(r'\b(languages|you know|speaking )\b', user_input):
+        return "I mostely talk in english, but I am also learning more languages."
+
+    # Asking about chatbot's purpose
+    elif re.search(r'\b(what can you do|help|features)\b', user_input):
+        return "I can answer simple questions based on predefined rules! like as time date & day"
+
+    # Asking about time
+    elif re.search(r'\b(time)\b', user_input):
+        from datetime import datetime
+        current_time = datetime.now().strftime("%I:%M %p")
+        return f"The current time is {current_time}."
+
+    # Asking about date
+    elif re.search(r'\b(date|day|today)\b', user_input):
+        from datetime import datetime
+        today = datetime.now().strftime("%A, %B %d, %Y")
+        return f"Today is {today}."
+    
+    # Star rating
+    elif re.search(r'\b(chat rating star|10/10)\b', user_input):
+        return "thank-you so much for this rating star, i am happy to help you."
+    
+    # Farewell
+    elif re.search(r'\b(bye|goodbye|see you)\b', user_input):
+        return "Goodbye! Have a great day! nice to talk you too"
+
+    # Default response
+    else:
+        return "I'm sorry, I don't understand that. anything else!"
+
+# --- Chat loop ---
+print("🤖 Rule-Based Chatbot (type 'exit' to quit)")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() in ['exit', 'quit', 'bye']:
+        print("Chatbot: Goodbye! 👋")
+        break
+    response = chatbot_response(user_input)
+    print("Chatbot:", response)
